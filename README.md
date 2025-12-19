@@ -405,3 +405,10 @@ handleFeishuLogin() {
 - 使用 state 参数防止 CSRF 攻击
 - state 存储在 Redis，有效期 5 分钟
 - 飞书配置存储在数据库，通过 Redis 缓存读取
+
+## 联系方式
+
+- Email: pholex@gmail.com
+
+---
+最后更新: 2025-12-19
