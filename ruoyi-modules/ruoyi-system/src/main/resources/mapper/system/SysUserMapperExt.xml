@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    SysUserMapper 扩展方法
+    需要将以下 SQL 添加到原有的 SysUserMapper.xml 中
+-->
+<mapper namespace="com.ruoyi.system.mapper.SysUserMapper">
+    
+    <!-- 根据飞书 UnionID 查询用户 -->
+    <select id="selectUserByFeishuUnionId" parameterType="String" resultMap="SysUserResult">
+        <include refid="selectUserVo"/>
+        where u.feishu_union_id = #{unionId} and u.del_flag = '0'
+    </select>
+    
+    <!-- 根据飞书 OpenID 查询用户 -->
+    <select id="selectUserByFeishuOpenId" parameterType="String" resultMap="SysUserResult">
+        <include refid="selectUserVo"/>
+        where u.feishu_open_id = #{openId} and u.del_flag = '0'
+    </select>
+    
+</mapper>
