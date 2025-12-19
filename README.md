@@ -261,7 +261,7 @@ const whiteList = ['/login', '/register', '/feishu/callback']
 
 ### 4. 网关配置
 
-在 Nacos 配置中心修改 `ruoyi-gateway-dev.yml`，添加飞书路由白名单：
+在 Nacos 配置中心修改网关配置文件 `ruoyi-gateway.yml`，添加飞书路由白名单：
 ```yaml
 security:
   ignore:
@@ -269,6 +269,8 @@ security:
       # ... 其他白名单
       - /auth/feishu/**
 ```
+
+**注意：** 请在对应环境的 Nacos 中进行配置
 
 ### 5. 飞书应用配置
 
