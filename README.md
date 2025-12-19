@@ -23,12 +23,11 @@
 | RemoteUserFallbackFactory.java | 添加对应的降级方法 |
 | SysUserController.java | 添加根据飞书 UnionID 查询用户的接口 |
 
-### 新增 7 个前端文件
+### 新增 6 个前端文件
 | 文件 | 说明 |
 |------|------|
-| views/feishu/login.vue | 飞书登录页面（扩展原登录页） |
 | views/feishu/callback.vue | 飞书授权回调页面 |
-| views/login_with_feishu.vue | 带飞书登录按钮的登录页面 |
+| views/login_feishu_patch.vue | 登录页面飞书集成补丁文件 |
 | api/feishu.js | 飞书 API 接口 |
 | store/modules/feishu.js | Vuex 飞书模块 |
 | router/feishu.js | 飞书路由配置 |
@@ -48,8 +47,8 @@ ruoyi-cloud-feishu/
 │       └── resources/mapper/system/SysUserMapperExt.xml
 ├── ruoyi-ui/                      # 前端扩展
 │   └── src/
-│       ├── views/feishu/login.vue
 │       ├── views/feishu/callback.vue
+│       ├── views/login_feishu_patch.vue
 │       ├── api/feishu.js
 │       ├── store/modules/feishu.js
 │       └── router/feishu.js
@@ -211,11 +210,10 @@ public R<LoginUser> getUserInfoByFeishuUnionId(@PathVariable String unionId) {
 
 ### 3. 前端集成
 
-#### 3.1 复制 7 个前端文件
+#### 3.1 复制 6 个前端文件
 ```
-ruoyi-ui/src/views/feishu/login.vue
 ruoyi-ui/src/views/feishu/callback.vue
-ruoyi-ui/src/views/login_with_feishu.vue
+ruoyi-ui/src/views/login_feishu_patch.vue
 ruoyi-ui/src/api/feishu.js
 ruoyi-ui/src/store/modules/feishu.js
 ruoyi-ui/src/router/feishu.js
@@ -224,11 +222,11 @@ ruoyi-ui/src/assets/icons/svg/feishu.svg
 
 #### 3.2 修改登录页面
 
-按照 `login_with_feishu.vue` 文件中的说明，在若依源码的 `login.vue` 中添加飞书登录功能：
+按照 `login_feishu_patch.vue` 文件中的说明，在若依源码的 `login.vue` 中添加飞书登录功能：
 
 ```bash
 # 参考增量修改文件
-cat ruoyi-ui/src/views/login_with_feishu.vue
+cat ruoyi-ui/src/views/login_feishu_patch.vue
 # 按照文件中的注释说明修改若依源码的 login.vue
 ```
 
@@ -301,9 +299,9 @@ security:
 ### 集成步骤
 
 #### 1. 复制增量修改文件
-将 `login_with_feishu.vue` 复制到若依前端项目：
+将 `login_feishu_patch.vue` 复制到若依前端项目：
 ```bash
-cp ruoyi-ui/src/views/login_with_feishu.vue /path/to/RuoYi-Cloud/ruoyi-ui/src/views/
+cp ruoyi-ui/src/views/login_feishu_patch.vue /path/to/RuoYi-Cloud/ruoyi-ui/src/views/
 ```
 
 #### 2. 复制飞书图标
@@ -313,7 +311,7 @@ cp ruoyi-ui/src/assets/icons/svg/feishu.svg /path/to/RuoYi-Cloud/ruoyi-ui/src/as
 ```
 
 #### 3. 修改登录页面
-按照 `login_with_feishu.vue` 文件中的注释说明，在若依源码的 `login.vue` 中添加相应内容
+按照 `login_feishu_patch.vue` 文件中的注释说明，在若依源码的 `login.vue` 中添加相应内容
 
 #### 4. 确保依赖完整
 确保以下文件已正确复制到若依项目：
